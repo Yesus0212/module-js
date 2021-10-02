@@ -33,7 +33,7 @@ while (accion) {
     else{
         console.log("Opción invalida");
     }
-    
+
 }
 
 
@@ -42,6 +42,7 @@ while (accion) {
 //    - Verificar si es un par o impar e imprimir en resultado en consola
 
 function parImpar (){
+
     let numero = Number(prompt("Ingresa un número del 1 al 100"));
     
     if((numero >= 1 && numero <=100) && !isNaN(numero) && numero != null && numero != ""){
@@ -55,6 +56,7 @@ function parImpar (){
     else{
         console.log("Dato invalido");
     }
+
 }
 
 // 2. Pedir al usuario 2 numeros
@@ -62,6 +64,7 @@ function parImpar (){
 //    - Imprimir en consola cual es el mayor de los 2
 
 function menorMayor() {
+
     let numero1 = Number(prompt("Introduce un número:"));
     let numero2 = Number(prompt("Introduce un segundo número:"));
     
@@ -76,6 +79,7 @@ function menorMayor() {
     else{
         console.log("Alguno de los datos es invalido");
     }
+
 }
 
 
@@ -84,18 +88,23 @@ function menorMayor() {
 //    - Calcular el peso que tendria esa persona en la luna en Imprimirlo en consola
 
 function pesoLunar() {
+
     let nombre, pesoTerrestre, pesoLunar, gravedadTierra = 9.8, gravedadLuna = 1.622; 
     
+    // Expresión regular para buscar caracteres no validos en el nombre, con la función test
+    const expresion = /^[0-9]*$/;
+
     nombre = String(prompt("Ingresa tu nombre:"));
     pesoTerrestre = Number(prompt("¿Cuánto pesas? (en kg)"));
-    
-    if((!isNaN(nombre) && nombre != null && nombre != "") && (!isNaN(pesoTerrestre) && pesoTerrestre != null && pesoTerrestre != "")){
+      
+    if((!expresion.test(nombre) && nombre != null && nombre != "") && (!isNaN(pesoTerrestre) && pesoTerrestre != null && pesoTerrestre != "")){
         pesoLunar = (pesoTerrestre / gravedadTierra) * gravedadLuna;
         console.log(`${nombre} tu peso en la luna sería de ${pesoLunar} kg`);
     }
     else{
         console.log("Alguno de los datos es invalido");
     }
+
 }
 
 
@@ -110,9 +119,10 @@ function pesoLunar() {
 // si es menor 50 , imprimir "F"
 
 function equivalenciaCalif() {
+
     let calificacion = Number(prompt("Ingresa la calificación del examen (0 al 100)"));
     
-    if((calificacion >= 0 && calificacion <=100) && !isNaN(calificacion) && calificacion != null && calificacion != ""){
+    if((calificacion >= 0 && calificacion <=100) && (!isNaN(calificacion) && calificacion != null && calificacion != "")){
         if(calificacion >= 90){
             console.log('A');
         }
@@ -135,4 +145,5 @@ function equivalenciaCalif() {
     else{
         console.log("La calificación que insertaste esta fuera del rango");
     }
+
 }
