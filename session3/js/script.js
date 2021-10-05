@@ -1,3 +1,4 @@
+// Expresión regular, que valida si existen números o simbolos especiales, dentro de un texto.
 const regExp = /^[0-9]*$/;
 
 /*
@@ -13,6 +14,8 @@ function ejercicio1(){
     let names = String(prompt("Ingresa tu nombre:"));
     let lastName = String(prompt("Ingresa tu apellido:"));
     
+    //El método test ejecuta la búsqueda de una ocurrencia entre una expresión regular y una cadena especifica.
+    // Devuelve true o false.
     if(!regExp.test(names) && names != null && names != ""){
         if(!regExp.test(lastName) && lastName != null && lastName != ""){
             names = names.toLowerCase();
@@ -54,12 +57,19 @@ Ejercicio 3:
 */
 
 function ejercicio3(){
-    const regExpV = /[aeiou]/g;
+    const regExpV = /[aeiouáéíóúAEIOUÁÉÍÓÚ]/g;
     
     const fullName2 = prompt("Ingresa tu nombre completo:");
     if(!regExp.test(fullName2) && fullName2 != null && fullName2 != ""){
-        const vowels = fullName2.match(regExpV).length;
-        alert(`Tu nombre tiene ${vowels} vocales`)
+        // El médoto match, devuelve un arreglo que contiene todas la coincidencias, incluidos los grupos
+        // de captura, o null si no se encuentra ninguna coincidencia.
+        const vowels = fullName2.match(regExpV);
+        if(vowels != null){
+            alert(`Tu nombre tiene ${vowels.length} vocales`);
+        }
+        else{
+            alert(`Tu nombre no contiene vocales`);
+        }
     }
     else {
         alert("Ingresa un nombre valido");
@@ -79,6 +89,8 @@ Ejercicio 4:
 
 function ejercicio4(){
     
+    // Para reemplazar todas las coindicencias, la expresión regular debe tener una /g (bandera de coincidencia global)
+    // Por defecto, el metodo replace, solo reemplazará la primer coincidencia.
     const word = /estudiante/g;    
     const text = "Cada estudiante tiene su ritmo, cada estudiante tiene su talento, y cada estudiante complementa al estudiante que tiene a su lado";    
     const repetitions = text.match(word).length;    
@@ -97,11 +109,13 @@ Ejercicio 5:
 function ejercicio5(){
 
     let largestWord = "";
-    const text2 = "Programación Javascript";
+    const text2 = prompt("Ingresa un texto a validar (palabra más larga):");
     
     function getLargestWords(text2) {
         const words = text2.split(" ");    
         
+        // El metodo for of, ejecuta la secuencia por cada elemento del objeto, en este caso el array words
+        // que se genera al utilizar el metodo split sobre el texto dado.
         for(let word of words){
             if(word.length > largestWord.length){
                 largestWord = word;
