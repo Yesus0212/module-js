@@ -1,8 +1,8 @@
-// const people = {
-//     nombre : "Jesus",
-//     apellido : "Solis",
-//     edad : 35
-// };
+const people = {
+    nombre : "Jesus",
+    apellido : "Solis",
+    edad : 35
+};
 
 // // Si dejo el ciclo así, solo va a implimir los atributos del objeto creado
 // for(person in people){
