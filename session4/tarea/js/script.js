@@ -3,7 +3,7 @@ const expresion = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789
 function randomGenerator(large) {
     
     const words = expresion.split("");
-    let randomWord = "$";
+    let randomWord = "";
 
     for(let i = 1; i <= large; i++){
 
