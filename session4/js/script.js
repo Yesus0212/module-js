@@ -100,12 +100,11 @@ Imprimir en consola el siguiente patrón
 */
 
 function patron(pieza, numFilas){
+    let imprime = "";
 
     for(let i = 1; i <= numFilas; i++){
-        for(let j = 1; j <= i; j++){
-            console.log(`${pieza}`);
-        }
-        console.log("");    
+        imprime += pieza;
+        console.log(`${imprime}`);  
     }
 
 }
