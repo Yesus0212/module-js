@@ -57,6 +57,7 @@ Ejercicio 3:
 */
 
 function ejercicio3(){
+
     const regExpV = /[aeiouáéíóúAEIOUÁÉÍÓÚ]/g;
     
     const fullName2 = prompt("Ingresa tu nombre completo:");
