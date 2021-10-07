@@ -6,7 +6,6 @@ function randomGenerator(large) {
     let randomWord = "";
 
     for(let i = 1; i <= large; i++){
-
         // Con el Math random, puedo generar un número aleatorio entre el 0 y el 1, sin incluir el uno (ejemplo 0.1764782364)
         // Con el Math floor redondeo al número entero más cercano        
         // Pero, si le agrego el (*) y un número como la longitud de mi constante expresion y el + que en este caso es un 0 
@@ -17,14 +16,31 @@ function randomGenerator(large) {
     alert(randomWord);    
 }
 
+
+function randomGenerator2(large) {    
+    let randomWord = "";
+
+    for(let i = 1; i <= large; i++){        
+
+        // Si vas a empezar desde un número diferente de 0, en el número de * hay que restarle el número de donde va a empezar
+        let numRandom = Math.floor(((Math.random() * 110 - 40) + 40));
+        console.log(numRandom);
+        let word = String.fromCharCode(numRandom);
+        randomWord += word;
+
+    }
+    alert(randomWord);    
+}
+
 let accion = true;
 
-while (accion){
+while (accion) {
 
-    let large = Number(prompt("Ingresa la longitud que deseas que tenga la cadena aleatoria"));
+    let large = Number(prompt("Ingresa la longitud"));
 
     if((large > 0 && large <= 100) && large != NaN && large != null && large != ""){
         randomGenerator(large);
+        randomGenerator2(large)
     }
 
     const regExp = /^[0-9]*$/;

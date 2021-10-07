@@ -58,7 +58,10 @@ Ejercicio 3:
 
 function ejercicio3(){
 
-    const regExpV = /[aeiouáéíóúAEIOUÁÉÍÓÚ]/g;
+    const vowels = "aeiouáéíóúAEIOUÁÉÍÓÚ";
+
+    // De esta forma, puedo integrar una variable a 
+    const regExpV = new RegExp(`[${vowels}]`,g);
     
     const fullName2 = prompt("Ingresa tu nombre completo:");
     if(!regExp.test(fullName2) && fullName2 != null && fullName2 != ""){
