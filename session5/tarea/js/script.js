@@ -22,7 +22,7 @@ function createArray(fullNames){
         koders.push(`Koder ${parseInt(names) + 1} : ${fullNames[names]}`);
     }
 
-    console.log(koders);
+    return koders;
 }
 
 
@@ -34,5 +34,8 @@ if(times > 0 && times <= 10 && !isNaN(times) && times != null && times != ""){
         fullNames.push(prompt("Ingresa el nombre completo"));    
     }
 
-    createArray(fullNames);    
+    console.log(createArray(fullNames));    
+
+}else{
+    console.log("Ingresa un número valido");
 }
