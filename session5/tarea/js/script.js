@@ -15,27 +15,37 @@ output:
     koder 3: Jason Vorhees
 */
 
-function createArray(fullNames){
+function createKodersArray(){
 
+    const times = Number(prompt("¿Cuántos koders deseas registrar?"));
     let koders=[];
-    for(names in fullNames){
-        koders.push(`Koder ${parseInt(names) + 1} : ${fullNames[names]}`);
-    }
+    if(times > 0 && times <= 10 && !isNaN(times) && times != null && times != ""){
 
-    return koders;
-}
+        for(let i = 1; i <= times; i++){
+            const fullName = (prompt("Ingresa el nombre completo"));                                     
+            const koder = `Koder ${i} : ${fullName} (${iniciales(fullName)})`;
+            koders.push(koder);
+        };
 
+        console.log(koders);
 
-let fullNames=[];
-const times = Number(prompt("¿Cuántos koders deseas registrar?"));
-
-if(times > 0 && times <= 10 && !isNaN(times) && times != null && times != ""){
-    for(let i = 1; i <= times; i++){
-        fullNames.push(prompt("Ingresa el nombre completo"));    
-    }
-
-    console.log(createArray(fullNames));    
-
-}else{
+    }else{
     console.log("Ingresa un número valido");
+    };
+
 }
+
+function iniciales (fullName){
+    const splitName = fullName.split(" ");
+    let iniciales = "";
+
+    for(let i = 0; i < splitName.length; i++){
+        iniciales += splitName[i].charAt(0).toUpperCase();
+        iniciales += ".";
+    } 
+
+    return iniciales;
+}
+
+
+createKodersArray();
