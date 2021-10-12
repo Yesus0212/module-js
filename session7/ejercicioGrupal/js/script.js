@@ -231,6 +231,12 @@ const totalPriceInventory = (cartShopping, type) => {
     return total;
 }
 
+
+
+console.log(searchTypeProduct(cartShoppings,"chip"));
+console.log(searchTypeProduct(cartShoppings,"drink"));
+console.log(searchProductPriceLess50(cartShoppings, "50"));
+console.log(searchProductPriceGreater50(cartShoppings,"50"));
 console.log(totalPriceInventory(cartShoppings, "total"));
 console.log(totalPriceInventory(cartShoppings, "chip"));
 console.log(totalPriceInventory(cartShoppings, "drink"));
