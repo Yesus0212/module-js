@@ -138,7 +138,10 @@ const mentorsArray = [
 
 // scoreAverageSubject2(mentorsArray);
 
-/*
+/**
+ * Funciones que generamos Jairo, Mora y yo
+ */
+
 function scoreAverageSubject(mentorsArray, subject){
     let coincidences = [];
     let total = 0;
@@ -203,8 +206,48 @@ const averageAbove9 = () => {
     return null;
 
 };
+
+
+/**
+ * Esta es la función que generó Jairo 
+
+//___________________ Ejercicio 1 _____________________
+function foundAllCourses(datos){
+  const listCourses = []
+  const courses = []
+  const repetidas = []
+  datos.forEach((datos)=>{
+    const {scores} = datos
+    scores.forEach((data,i)=>{
+      const {score,signature} = data
+      getSumScoreCourses(listCourses,courses,signature,score,repetidas)
+    })
+  })
+  getAverageForCourses(listCourses,courses,repetidas)
+}
+function getSumScoreCourses(listCourses,courses,signature,score,repetidas){
+  if(listCourses.includes(signature)){
+    courses[signature] += score
+    repetidas[signature] += 1
+  }else{
+    listCourses.push(signature)
+    courses[signature] = score
+    repetidas[signature] = 1
+  }
+}
+function getAverageForCourses(listCourses,courses,contador){
+  for(key in listCourses){
+    console.log(`El promedio de ${listCourses[key]} es ${courses[listCourses[key]]/contador[listCourses[key]]}`)
+  }
+}
+foundAllCourses(mentorsArray)
+
 */
 
+
+/*
+
+Estos son los ejemplos que generó el Mentor, utilizando notación de corchetes, hay que revisar esto
 
 const getCoverageBySignature2 = (mentors) => {
     let signatures = {};
@@ -222,7 +265,7 @@ const getCoverageBySignature2 = (mentors) => {
     });
 
     console.log(signatures, 'signatures')
-    
+
 };
 
 console.log(getCoverageBySignature2(mentorsArray))
@@ -256,4 +299,6 @@ const getFilter = () => {
 return newMentos;
 };
 
-console.log(getFilter())
+console.log(getFilter());
+
+*/
