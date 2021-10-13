@@ -119,24 +119,24 @@ const mentorsArray = [
 
   //-Obtener el score promedio de cada materia( HTML, CSS, JS, ReactJS )
 
-function scoreAverageSubject2(mentorsArray){
-    let coincidences = [];
-    let total = 0;
-    mentorsArray.forEach((mentors) => {
-        mentors.scores.forEach((scores) => {
-            if(scores.signature === scores.signature){
-                coincidences.push(scores.signature);                
-                total += scores.score;
-            }
-        });  
-        coincidences.push(total);
-    });
+// function scoreAverageSubject2(mentorsArray){
+//     let coincidences = [];
+//     let total = 0;
+//     mentorsArray.forEach((mentors) => {
+//         mentors.scores.forEach((scores) => {
+//             if(scores.signature === scores.signature){
+//                 coincidences.push(scores.signature);                
+//                 total += scores.score;
+//             }
+//         });  
+//         coincidences.push(total);
+//     });
 
-    console.log(coincidences);
+//     console.log(coincidences);
     
-}
+// }
 
-scoreAverageSubject2(mentorsArray);
+// scoreAverageSubject2(mentorsArray);
 
 /*
 function scoreAverageSubject(mentorsArray, subject){
@@ -206,3 +206,54 @@ const averageAbove9 = () => {
 */
 
 
+const getCoverageBySignature2 = (mentors) => {
+    let signatures = {};
+
+    mentors.forEach((mentor) => {
+        mentor.scores.forEach((score) => {
+            console.log(signatures[score.signature])
+
+            if(score.signature in signatures) {
+                signatures[score.signature] += score.score / mentors.length;
+            } else {
+                signatures[score.signature] = score.score / mentors.length
+            }
+        })
+    });
+
+    console.log(signatures, 'signatures')
+    
+};
+
+console.log(getCoverageBySignature2(mentorsArray))
+
+// Obtener el promedio individual de cada mentor
+
+const coverageByMentor = (mentorsArray) => {
+    const newMentors = [];
+    mentorsArray.forEach((mentor) => {
+        let coverage = 0;
+        mentor.scores.forEach((mentorData ) => {
+            coverage += mentorData.score / mentor.scores.length;
+        });
+        console.log(coverage)
+        newMentors.push({ name: mentor.name, coverage})
+    });
+    return newMentors;
+};
+
+console.log(coverageByMentor(mentorsArray))
+
+// -Obtener la lista de mentores cuyo promedio sea mayor a 9.5 
+
+const getFilter = () => {
+    const newMentos= [];
+    coverageByMentor(mentorsArray).forEach(( mentor ) => {
+        if(mentor.coverage > 9.5) {
+            newMentos.push(mentor)
+        }
+    })
+return newMentos;
+};
+
+console.log(getFilter())
