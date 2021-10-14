@@ -140,7 +140,7 @@ const mentorsArray = [
 
 /**
  * Funciones que generamos Jairo, Mora y yo
- */
+ 
 
 function scoreAverageSubject(mentorsArray, subject){
     let coincidences = [];
@@ -206,7 +206,7 @@ const averageAbove9 = () => {
     return null;
 
 };
-
+*/
 
 /**
  * Esta es la función que generó Jairo 
@@ -248,14 +248,15 @@ foundAllCourses(mentorsArray)
 /*
 
 Estos son los ejemplos que generó el Mentor, utilizando notación de corchetes, hay que revisar esto
+*/
 
 const getCoverageBySignature2 = (mentors) => {
     let signatures = {};
 
     mentors.forEach((mentor) => {
         mentor.scores.forEach((score) => {
-            console.log(signatures[score.signature])
 
+            // Se avalua 
             if(score.signature in signatures) {
                 signatures[score.signature] += score.score / mentors.length;
             } else {
@@ -264,11 +265,14 @@ const getCoverageBySignature2 = (mentors) => {
         })
     });
 
-    console.log(signatures, 'signatures')
+    return signatures;
 
 };
 
 console.log(getCoverageBySignature2(mentorsArray))
+
+/*
+
 
 // Obtener el promedio individual de cada mentor
 

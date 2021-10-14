@@ -139,3 +139,16 @@ const mentorsArray = [
 //     ]
 // }
 
+const coverageByMentor = (mentorsArray) => {
+
+    const newMentors = mentorsArray.map((mentor) => {
+        let coverage = 0;
+        mentor.scores.forEach((mentorData) => {
+            coverage += mentorData.score / mentor.scores.length;
+        });
+        return { name: mentor.name, coverage};
+    });
+    return newMentors;
+};
+
+console.log(coverageByMentor(mentorsArray));
