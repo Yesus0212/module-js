@@ -74,22 +74,98 @@ const songsData = [
 
 /*
 - Agrupar los nombres de la bandas, que no esten repetidas
-- Agrupar las canciones por banda
-- La cancion con más reproducciones
-- La cancion con más likes
 */
+
+// Intentar usar el spread operator
 
 function getBands(songsData){
 
-    let final = songsData.map(({band}) => band).reduce((accum, current) =>  {
-        if(!accum.includes(current)){
-            accum.push(current);
-        }
-        return accum;
+    const reduceBands = songsData.reduce((accum, current) => {
+        accum.push(current.band);        
+        return [...new Set(accum)];
     },[]);
 
-    return final;
+    return reduceBands;
 }
 
 console.log(getBands(songsData));
 
+
+function getBands2(songsData){
+
+    const reduceBands = songsData.map(({band}) => band).reduce((accum, current) =>  {
+        if(!accum.includes(current))  accum.push(current);
+        return accum;
+    },[]);
+
+    return reduceBands;
+}
+
+//console.log(getBands2(songsData));
+
+
+/*
+- Agrupar las canciones por banda
+    {
+        name: "No dejes que...",
+        band: "Jaguares",
+        releaseYear: "1999",
+        statistics: {
+            likes: 12345,
+            reproductions: 10000
+        },
+    }
+*/
+
+function getGroupSongsBYBand(songsData){
+
+    const list = songsData.reduce((accum, current) => {
+      accum[current.band] == undefined ? accum[current.band] = [current.name] : accum[current.band].push([current.name]);  
+      return accum;
+    },[]);
+  
+    return list;
+  
+}
+
+console.log(getGroupSongsBYBand(songsData));
+
+
+/*
+- La cancion con más reproducciones
+- La cancion con más likes
+*/
+
+function getPopularSong(songsData, statisticType){
+
+    const result = songsData.reduce((accum, current) => {        
+        
+        if(current["statistics"][statisticType] > accum["statistics"][statisticType]){
+            return current;
+        } else {
+            return accum;
+        }
+    });
+
+    return `La canción con más ${statisticType} es ${result.name} de ${result.band} con ${result["statistics"][statisticType]}`;
+
+}
+
+//console.log(getPopularSong(songsData, "likes"));
+//console.log(getPopularSong(songsData, "reproductions"));
+
+
+function songFor(songsData) {
+    const result = songsData.reduce((acumulado, items) => {
+        let nuevoNombre = items.band;
+        let nombreSeparado = nuevoNombre.split(" ");
+        let nombreFinal = `${nombreSeparado[0].toLowerCase()}${nombreSeparado[1]?nombreSeparado[1]:""}`
+        acumulado[nombreFinal] == undefined ? acumulado[nombreFinal] = [items.name] : acumulado[nombreFinal].push(items.name);
+
+        return acumulado;
+    }, {});
+
+    return result;
+};
+
+console.log(songFor(songsData));
