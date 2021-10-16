@@ -52,49 +52,88 @@ Usar reduce para obtener la siguiente informacion
 - la edad promedio de todos los vacunados
 - un array con aquellas personas que se vacunaron y que son menores a 30 años
 - la edad promedio de los no vacunados
-*/
-
-// function getAverageAgeNotVoted(arrayPersons){
-
-//     let index = 0;
-//     const notVotedPerson = arrayPersons.reduce((acumulate, current) => { 
-//         current.voted == false ? acumulate += current.age: acumulate;
-    
-//         if(!current.voted){
-//             index ++;
-//             return acumulate += current.age;
-//         }
-        
-//         return acumulate;
-
-//     }, 0);
-
-//     return (notVotedPerson / index).toFixed(2);
-
-// }
-
-// console.log(getAverageAgeNotVoted(arrayPersons));
-
-/*
-- el porcentaje de vacunados vs no vacunados
-- el procentaje de mujeres que se vacunaron
-- el porcentaje de los hombres que vacunarion
-*/
-
 
 function getAverageAgeNotVoted(arrayPersons){
+
+    let index = 0;
+    const notVotedPerson = arrayPersons.reduce((acumulate, current) => {         
+        !current.voted ? (index++, acumulate += current.age) : acumulate;
+        return acumulate;
+    }, 0);
+
+    return (notVotedPerson / index).toFixed(2);
+
+}
+
+console.log(getAverageAgeNotVoted(arrayPersons));
+
+function getAverageAgeNotVoted2(arrayPersons){
 
     const notVotedPerson = arrayPersons.reduce((acumulate, current) => {         
         !current.voted ?acumulate.push(current.age) : acumulate;
         return acumulate;
     }, []);
-
+    
     const average = notVotedPerson.reduce((acum, curre) => {
         return acum += curre;
-    })
+    } , 0);
 
-    return average/notVotedPerson.length;
+    return (average/notVotedPerson.length).toFixed(2);
 
 }
 
-console.log(getAverageAgeNotVoted(arrayPersons));
+console.log(getAverageAgeNotVoted2(arrayPersons));
+
+/*
+- el porcentaje de vacunados vs no vacunados
+
+const porcentajeVacunacion = () => {
+  let result = arrayPersons.reduce( (contador, persona) => {
+  if(persona.voted ==true){
+    contador.push(persona);
+  }
+  return contador;
+}, [])  
+let porcentajeVacunados = result.length/arrayPersons.length * 100;
+let porcentajeNoVacunados= 100-porcentajeVacunados;
+return console.log(`El porcentaje de vacunados es ${porcentajeVacunados} y el de no vacunados es ${porcentajeNoVacunados}`)
+}
+porcentajeVacunacion();
+
+- el procentaje de mujeres que se vacunaron
+
+overAllWomen=()=>{
+    let result = arrayPersons.reduce(function (AllWomen,women){
+        // console.log(AllWomen);
+        if(women.gender == ‘mujer’ && women.voted){
+            AllWomen.voted++;
+        }else if(women.gender == ‘mujer’ && !women.voted){
+            AllWomen[‘notVoted’]++;
+        }
+        AllWomen[‘total’] = AllWomen[‘voted’] + AllWomen[‘notVoted’];
+        AllWomen[‘percentile’] = (AllWomen[‘voted’]/AllWomen[‘total’])*100
+        return AllWomen;
+    },{notVoted:0,voted:0})
+    console.log(result);
+    return result
+}
+overAllWomen();
+
+- el porcentaje de los hombres que vacunarion
+*/
+
+const overAllWomen=(type)=>{
+    let result = arrayPersons.reduce(function (AllWomen,women){
+        if(women.gender == type && women.voted){
+            AllWomen.voted++;
+        }else if(women.gender == type && !women.voted){
+            AllWomen['notVoted']++;
+        }
+        AllWomen['total'] = AllWomen['voted'] + AllWomen['notVoted'];
+        AllWomen['percentile'] = `${((AllWomen['voted']/AllWomen['total'])*100).toFixed(3)}%`
+        return AllWomen;
+    },{notVoted:0,voted:0})
+    return { [type] : result}
+}
+console.log(overAllWomen("hombre"));
+overAllWomen("mujer");
