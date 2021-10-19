@@ -244,9 +244,9 @@ function getArrayKoders(koders){
   // Itero el arreglo nuevo con reduce()
   const getKodersByBootcamp = getKoders.reduce((accum, current) => {
     // Evaluó con un operador ternario
-    // Si ACCUM es igual a undefined, se crea la estructura nueva del arreglo y se agrega con spread el contenido de CURRENT a ACCUM
+    // Si ACCUM es igual a undefined, se crea la estructura nueva del arreglo y se agrega con push el contenido de CURRENT en ACCUM
     // Si no, se agrega el contenido de CURRENT a ACCUM en la estructura existente 
-    accum[current.bootcamp] == undefined ? (accum[current.bootcamp] = [], accum[current.bootcamp] = [...accum, current]) : accum[current.bootcamp] = [...accum, current];
+    accum[current.bootcamp] == undefined ? (accum[current.bootcamp] = [], accum[current.bootcamp].push(current)) : accum[current.bootcamp].push(current);
 
     // Se retorna el resultado
     return accum;
