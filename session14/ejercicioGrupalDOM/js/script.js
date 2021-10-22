@@ -124,12 +124,21 @@ mentorsArray.forEach((mentor) => {
     th.appendChild(textName);
     tr.appendChild(th);
 
+    let accum = 0;
     mentor.scores.forEach((score) => {
         const td = document.createElement('td');
         const textScore = document.createTextNode(score.score); 
         td.appendChild(textScore);
         tr.appendChild(td);
+
+        (accum += score.score / mentor.scores.length).toFixed(2);
     });    
+
+    const tdAverage = document.createElement('td');
+    const textAvScore = document.createTextNode(accum);
+    tdAverage.appendChild(textAvScore);
+
+    tr.appendChild(tdAverage);
 
     body.appendChild(tr);
 });
