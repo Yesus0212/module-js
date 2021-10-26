@@ -1,12 +1,14 @@
 /**
  * 1. Crear una function que me genere una persona
- * 2. 
+ * 2. Asignarle la funcion al boton para recolectar los datos del input
+ * 3. Obtener el boton de guardar
+ * 4. Asignarle un listener
+ * 5. Detectar el evento click
+ * 6. Con el callback obtener los datos de los inputs
+ * 7. Con los datos obtenidos armar el objeto y almacenarlo en un arreglo
  */
 
-const infoPerson = document.querySelectorAll('input');
-const button = document.getElementById('savePerson');
-const tBody = document.getElementById('tableBody');
-const personList = [
+ const personList = [
     {
         name: 'jesus',
         lastName: 'solis',
@@ -21,6 +23,10 @@ const personList = [
     }
 ];
 
+const infoPerson = document.querySelectorAll('input');
+const button = document.getElementById('savePerson');
+const tBody = document.getElementById('list');
+
 const createPerson = () => {
 
     const person = {
@@ -29,7 +35,7 @@ const createPerson = () => {
     }
     
     infoPerson.forEach((input) => {
-        person[input] = input.value;
+        person[input.name] = input.value;
     });
 
     personList.push(person);
@@ -80,7 +86,6 @@ const createRow = () => {
 button.addEventListener('click', (e) => {
     createPerson();
     createRow();
-    console.log(infoPerson);
 });
 
 createRow();

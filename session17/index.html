@@ -9,38 +9,30 @@
     <title>Formulario</title>
 </head>
 <body>
-    <div class="container">
-        <form>
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre">          
-            </div>
-            <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido">          
-            </div>        
-            <button id="savePerson" type="button" class="btn btn-primary">Agregar</button>
-          </form>
+  <div class="container">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input name='name' type="text" class="form-control" aria-describedby="nombre">
     </div>
-
-    <div class="container">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>    
-              </tr>
-            </thead>
-            <tbody id="tableBody">
-              <tr>
-                <td>Jesus</td>
-                <td>Solis</td>            
-              </tr>          
-            </tbody>
-        </table>
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input name='lastName' type="text" class="form-control">
     </div>
+    <button type="button" id="savePerson" class="btn btn-primary">Guardar</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+      </tr>
+    </thead>
+    <tbody id="list">
 
-      <script src="./js/script.js"></script>
-    
+    </tbody>
+  </table>
+  
+  <script src="./js/script.js"></script>
+      
 </body>
 </html>
