@@ -147,12 +147,8 @@ getMentors.forEach((mentors) => {
         trB.appendChild(td);
     }    
 
+    const button = createButton("Eliminar");
     const tdButton = document.createElement('td');
-    const button = document.createElement('button');
-    button.classList.add("btn-danger");
-    button.setAttribute("id", "buttonDelete");   
-    button.textContent = "Eliminar";
-
     tdButton.appendChild(button);
     trB.appendChild(tdButton);
 
@@ -161,14 +157,42 @@ getMentors.forEach((mentors) => {
 });
 
 
+// Función para generar un botón
+function createButton(buttonType){
+
+    const button = document.createElement('button');
+    button.classList.add("btn-danger");
+
+    switch(buttonType){
+        case "Eliminar":
+            button.setAttribute("id", "buttonDelete");   
+            button.textContent = "Eliminar";
+            break;
+        default:
+            console.log("Error");
+            break;
+    }
+    
+    return button;
+}
+
+
+// Aquí selecciono todos los elementos con el id buttonDelete
 const buttonsDelete = document.querySelectorAll("#buttonDelete");
 
+// Itero el arreglo de botones que se crean con el querySelectorAll
 buttonsDelete.forEach((button) => {
     actionDelete(button);
 });
 
+// Creo una función para eliminar la fila completa que contenga al botón
 function actionDelete(button){
-    button.addEventListener("click", () => {
+    button.addEventListener('click', info => {
+
+        // Si le paso una variable después del nombre del evento, al imprimirlo en consola
+        // muestra la información del evento
+        console.log(info);
+
         /*  La propierdad parentNode devuelve el padre del button especificado en el arbol
             const row = button.parentNode;
             --- Para este caso al imprimir lo que nos devuelve la constante row, nos devuelve la td donde esta alojado el botón
