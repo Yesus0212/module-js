@@ -52,10 +52,10 @@ const renderMentors = (mentorss) => {
     
             tBody.appendChild(row); 
     
-            deleteButton.addEventListener('click', (event) => {            
+            deleteButton.addEventListener('click', (event) => {   
+                deleteButton.closest("tr").remove();         
                 const mentorId = event.target.dataset.mentor;
-                deleteUser(mentorId);                
-                getMentors();                 
+                deleteUser(mentorId);                              
             });
     
         });      
@@ -113,8 +113,6 @@ const postUser = (mentor) => {
     // El tercer parametro "true" indica si la llamada al endPoint es asincrona
     xhr.open('POST', URL, true);
     xhr.send(JSON.stringify(mentor));
-
-    getMentors();
 };
 
 
@@ -160,7 +158,6 @@ const deleteUser = (mentorId) => {
     // El tercer parametro "true" indica si la llamada al endPoint es asincrona
     xhr.open('DELETE', URL, true);
     xhr.send();
-    getMentors();
 };
 
 getMentors();
