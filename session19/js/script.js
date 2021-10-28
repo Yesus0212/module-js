@@ -10,10 +10,7 @@ const renderMentors = (mentorss) => {
         tBody.removeChild(tBody.lastElementChild);
     }
 
-    if(mentorss){
-
-        console.log("Armada");
-
+    if(mentorss != null){
         // El Object.values nos devuelve el valor de la llave en un objeto
         const mentors = Object.values(mentorss);
     
@@ -24,28 +21,41 @@ const renderMentors = (mentorss) => {
         const mentors3 = Object.entries(mentorss);
     
         mentors3.forEach(mentor => {
+    
             const row = document.createElement('tr');
         
-            const tdName = document.createElement('td');
-            const tdLastName = document.createElement('td');
+            const tdMentor = document.createElement('td');
+            const tdHTML = document.createElement('td');
+            const tdCSS = document.createElement('td');
+            const tdJS = document.createElement('td');
+            const tdREACT = document.createElement('td');
+            const tdAverage = document.createElement('td');
     
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Eliminar';
             deleteButton.setAttribute('data-mentor', mentor[0]);
     
-            tdName.textContent = mentor[1]['name'];
-            tdLastName.textContent = mentor[1]['lastName'];
+            tdMentor.textContent = mentor[1]['name'];
+            tdHTML.textContent = mentor[1]['html'];
+            tdCSS.textContent = mentor[1]['css'];
+            tdJS.textContent = mentor[1]['js'];
+            tdREACT.textContent = mentor[1]['react'];
+            tdAverage.textContent = mentor[1]['average'];
     
-            row.appendChild(tdName);
-            row.appendChild(tdLastName); 
+            row.appendChild(tdMentor);
+            row.appendChild(tdHTML); 
+            row.appendChild(tdCSS); 
+            row.appendChild(tdJS); 
+            row.appendChild(tdREACT); 
+            row.appendChild(tdAverage); 
             row.appendChild(deleteButton);       
     
             tBody.appendChild(row); 
     
-            deleteButton.addEventListener('click', (event) => {                            
-                deleteButton.closest("tr").remove();
+            deleteButton.addEventListener('click', (event) => {            
                 const mentorId = event.target.dataset.mentor;
-                deleteUser(mentorId);                                                         
+                deleteUser(mentorId);                
+                getMentors();                 
             });
     
         });      
@@ -103,15 +113,22 @@ const postUser = (mentor) => {
     // El tercer parametro "true" indica si la llamada al endPoint es asincrona
     xhr.open('POST', URL, true);
     xhr.send(JSON.stringify(mentor));
+
+    getMentors();
 };
 
 
 /////////////////////////////////////// Evento listener click para guardar un elemento a la tabla ////////////////////////////////////////
 
 const mentor = {
-    name: '',
-    lastName: '',
+    mentor: '',
+    html: '',
+    css: '',
+    js: '',
+    react: '',
+    promedio: '',
 }
+
 
 button.addEventListener('click', () =>{
 
@@ -119,7 +136,7 @@ button.addEventListener('click', () =>{
         mentor[input.name] = input.value;
     });
 
-    postUser(mentor);    
+    postUser(mentor);
 });
 
 
@@ -142,7 +159,8 @@ const deleteUser = (mentorId) => {
     
     // El tercer parametro "true" indica si la llamada al endPoint es asincrona
     xhr.open('DELETE', URL, true);
-    xhr.send();    
+    xhr.send();
+    getMentors();
 };
 
 getMentors();
