@@ -21,7 +21,7 @@
 
 $('input').click(() => {
     console.log('se escucha');
-    const inputSelected = $(".control-wrapper input[type='radio']:checked").val();
+    const inputSelected = $(".controls-wrapper input[type='radio']:checked").val();
     console.log($('#figura'));
 
     // $('#figura').attr('class', inputSelected);

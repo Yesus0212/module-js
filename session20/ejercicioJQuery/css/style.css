@@ -1,0 +1,20 @@
+.divUnSelect{
+    width: 40px;
+    height: 40px;
+    border: solid red
+}
+
+.divSelect{
+    width: 40px;
+    height: 40px;
+    border: solid red;
+    background-color: red;
+}
+
+.pUnSelect{
+    color: red;
+}
+
+.pSelect{
+    color: white;
+}
