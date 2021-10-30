@@ -8,18 +8,23 @@ $('#saveElement').click(() => {
 
 
 const renderElements = (elements) => {
-    for(let i = 0; i < elements.length; i++){
-        console.log(elements[i]);
-        const div = $("<div></div>");
-        const p = $("<p></p>").text(elements[i]);
-        div.attr('id', i);
-        div.addClass("divUnSelect");
-        div.append(p);
-        div.addClass("pUnSelect");
-        $('#groupElements').append(div);
-    };
+
+    $('.radioContent').remove();
+
+    elements.forEach((element, index) => {
+        const div = $("<div></div>").addClass("radioContent");
+        const labelRadio = $("<label></label>").attr({for:index}).text(element);
+        const inputRadio = $("<input></input>").attr({type:'radio', name:'card', id:index}).val(index);
+        inputRadio.hide();
+        div.append(labelRadio);
+        div.append(inputRadio);
+        $('#groupElements').append(div);        
+
+        inputRadio.click(() => {
+            div.siblings().removeClass();
+            div.siblings().addClass("radioContent");
+            div.addClass("radioSelected");
+        });
+    });
+   
 };
-
-
-
-
