@@ -1,0 +1,21 @@
+.radioContent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: yellow;
+    background-color: rgba(196, 196, 196, 0.884);
+}
+
+.radioSelected{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: rgba(32, 32, 235, 0.623);
+}
